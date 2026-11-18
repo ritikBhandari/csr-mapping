@@ -997,8 +997,7 @@ function render(){
   /* 9. per capita */
   {const m={};P.forEach(o=>m[o.ss]=(m[o.ss]||0)+1);
    const rows=Object.entries(m).filter(([s])=>A.DATA.statePop[s]).map(([s,v])=>({l:title(s),s:`${v} fellow${v>1?'s':''}`,v:v/A.DATA.statePop[s]*1e7,key:s})).sort((a,b)=>b.v-a.v);
-   const nat=P.length/1210854977*1e7;
-   const big=rows.filter(r=>m[r.key]>=5);const lead=big[0]||rows[0];
+   const nat=P.length/1210854977*1e7;   const big=rows.filter(r=>m[r.key]>=5);const lead=big[0]||rows[0];
    const c=card('Fellows per 10 million people',lead?`Among states with five or more fellows, ${lead.l} leads with ${lead.v.toFixed(1)} per 10 million residents, against ${nat.toFixed(1)} for India as a whole.`:'No data.');
    const sc=el('div','scroll');sc.append(hbars(rows,{valFmt:v=>v.toFixed(1),onClick:r=>goState(r.key)}));c.append(sc);
    c.append(foot('Population is from Census 2011 (Telangana and Ladakh separated from their 2011 parent states district by district). Small territories swing sharply with a single fellow.'));C.append(c)}
